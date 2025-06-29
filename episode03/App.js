@@ -1,26 +1,29 @@
-import React, { useState } from "react"
-import ReactDOM from "react-dom/client"
+import React, { useState } from "react";
+import ReactDOM from "react-dom/client";
 
-function Counter() {
-    const [count, setCount] = useState(0);
+function Toggle() {
+  const [light, setLight] = useState("off");
 
-    function increment() {
-        setCount(count + 1)
-    }
+  function toggleLight() {
+    setLight(light === "on" ? "off" : "on");
+  }
 
-    function decrement() {
-        setCount(count - 1);
-    }
-
-    return (
-        <div>
-            <h1>Counter Game</h1>
-            <h2>Current Count: { count }</h2>
-            <button onClick={increment} >Increment++</button>
-            <button onClick={decrement} >Decrement--</button>
-        </div>
-    )
+  return (
+    <div
+      style={{
+        backgroundColor: light === "on" ? "yellow" : "gray",
+        textAlign: "center",
+      }}
+    >
+      <h2>
+        Light is {light.toUpperCase()} {light === "on" ? "💡" : "🌑"}
+      </h2>
+      <button onClick={toggleLight}>
+        {light === "on" ? "Turn OFF" : "Turn ON"}
+      </button>
+    </div>
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Counter />);
+root.render(<Toggle />);
