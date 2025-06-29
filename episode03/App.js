@@ -1,35 +1,26 @@
 import React, { useState } from "react"
 import ReactDOM from "react-dom/client"
 
-function SumComponent() {
-    const [first, setFirst] = useState("")
-    const [second, setSecond] = useState("")
+function Counter() {
+    const [count, setCount] = useState(0);
 
-    const getSum = (a, b) => {
-        const num1 = Number(a) || 0;
-        const num2 = Number(b) || 0;
-        return num1 + num2;
+    function increment() {
+        setCount(count + 1)
+    }
+
+    function decrement() {
+        setCount(count - 1);
     }
 
     return (
         <div>
-            <h1 id="sum">Enter Two Number</h1>
-            <input
-                placeholder="First Number"
-                value={first}
-                onChange={e => setFirst(e.target.value)}
-            />
-
-            <input
-                placeholder="Second Number"
-                value={second}
-                onChange={e => setSecond(e.target.value)}
-            />
-
-            <h1>Result is { getSum(first, second) }</h1>
+            <h1>Counter Game</h1>
+            <h2>Current Count: { count }</h2>
+            <button onClick={increment} >Increment++</button>
+            <button onClick={decrement} >Decrement--</button>
         </div>
     )
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(< SumComponent />)
+root.render(<Counter />);
